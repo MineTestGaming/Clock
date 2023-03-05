@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="Clock.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Clock"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="Page_Loaded">
+
+    <RelativePanel>
+        <TextBlock Text="00:00" FontSize="96" HorizontalAlignment="Center" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Name="TimeTextBlock"/>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20">
+            <Button x:Name="SwitchFloatWindow" Content="切换至画中画模式" Click="SwitchFloatWindow_Click"/>
+        </StackPanel>
+    </RelativePanel>
+</Page>
