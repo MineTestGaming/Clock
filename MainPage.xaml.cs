@@ -61,7 +61,7 @@ namespace Clock
                 int Hr = currentTime.Hour;
                 int Min = currentTime.Minute;
                 int Sec = currentTime.Second;
-                TimeTextBlock.Text = Trim2num(Hr) + ":" + Trim2num(Min) + ":" + Trim2num(Sec) ;
+                TimeTextBlock.Text = Hr.ToString() + ":" + Trim2num(Min) + ":" + Trim2num(Sec) ;
                 await Task.Delay(100);
             }
         }
