@@ -13,7 +13,16 @@
         <TextBlock Text="00:00" FontSize="96" HorizontalAlignment="Center" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Name="TimeTextBlock"/>
         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20">
-            <Button x:Name="SwitchFloatWindow" Content="切换至画中画模式" Click="SwitchFloatWindow_Click"/>
+            <Button x:Name="SwitchFloatWindow"  Click="SwitchFloatWindow_Click" Margin="10">
+                <Button.Content>
+                    <TextBlock Text="&#xE2B4;" FontFamily="Segoe MDL2 Assets" FontSize="20"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="SwitchFullscreen" Click="SwitchFullscreen_Click" Margin="10">
+                <Button.Content>
+                    <SymbolIcon Symbol="FullScreen"/>
+                </Button.Content>
+            </Button>
         </StackPanel>
     </RelativePanel>
 </Page>

@@ -61,14 +61,35 @@ namespace Clock
                 int Hr = currentTime.Hour;
                 int Min = currentTime.Minute;
                 int Sec = currentTime.Second;
-                TimeTextBlock.Text = Hr.ToString() + ":" + Min.ToString()/* + ":" + Sec.ToString()*/ ;
+                TimeTextBlock.Text = Trim2num(Hr) + ":" + Trim2num(Min) + ":" + Trim2num(Sec) ;
                 await Task.Delay(100);
             }
+        }
+
+        public string Trim2num(int i)
+        {
+            string o;
+            if (i < 10)
+            {
+                o = "0" + i.ToString();
+            }
+            else
+            {
+                o = i.ToString();
+            }
+            
+
+            return o;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ClockStart();
+        }
+
+        private void SwitchFullscreen_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

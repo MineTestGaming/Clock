@@ -8,8 +8,8 @@
 
   <Identity
     Name="1f5e69e0-9b86-47b2-9ecc-bde55c83cfbc"
-    Publisher="CN=sutao"
-    Version="1.0.0.0" />
+    Publisher="CN=MineTestGaming"
+    Version="1.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="1f5e69e0-9b86-47b2-9ecc-bde55c83cfbc" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
