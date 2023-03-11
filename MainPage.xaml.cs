@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
@@ -15,6 +18,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Clock.CustomStateTrigger;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
@@ -25,8 +29,8 @@ namespace Clock
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        
-        
+
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -40,14 +44,17 @@ namespace Clock
             var WindowMode = ApplicationView.GetForCurrentView();
             var WindowPrefrence = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
             WindowPrefrence.CustomSize = new Windows.Foundation.Size(410, 212);
-            if (WindowMode.ViewMode != ApplicationViewMode.CompactOverlay) {
-                 await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, WindowPrefrence);
+            if (WindowMode.ViewMode != ApplicationViewMode.CompactOverlay)
+            {
+                await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, WindowPrefrence);
+                SFW_Text.Text = "";
                 return;
             }
 
-            if(WindowMode.ViewMode == ApplicationViewMode.CompactOverlay)
+            if (WindowMode.ViewMode == ApplicationViewMode.CompactOverlay)
             {
                 await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
+                SFW_Text.Text = "";
                 return;
             }
 
@@ -56,12 +63,13 @@ namespace Clock
 
         private async void ClockStart()
         {
-            for (; ; ) {
+            for (; ; )
+            {
                 var currentTime = System.DateTime.Now;
                 int Hr = currentTime.Hour;
                 int Min = currentTime.Minute;
                 int Sec = currentTime.Second;
-                TimeTextBlock.Text = Hr.ToString() + ":" + Trim2num(Min) + ":" + Trim2num(Sec) ;
+                TimeTextBlock.Text = Hr.ToString() + ":" + Trim2num(Min) + ":" + Trim2num(Sec);
                 await Task.Delay(100);
             }
         }
@@ -77,7 +85,7 @@ namespace Clock
             {
                 o = i.ToString();
             }
-            
+
 
             return o;
         }
@@ -85,11 +93,27 @@ namespace Clock
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ClockStart();
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+            ApplicationView.GetForCurrentView().TitleBar.ButtonBackgroundColor = Windows.UI.Color.FromArgb(0, 0, 0, 0);
+            ApplicationView.GetForCurrentView().TitleBar.ButtonInactiveBackgroundColor = Windows.UI.Color.FromArgb(0, 0, 0, 0);
         }
 
         private void SwitchFullscreen_Click(object sender, RoutedEventArgs e)
         {
+            var WindowMode = ApplicationView.GetForCurrentView();
+            if (WindowMode.IsFullScreenMode == false)
+            {
+                WindowMode.TryEnterFullScreenMode();
+                SF_Symbol.Symbol = Symbol.BackToWindow;
+                return;
+            }
 
+            if (WindowMode.IsFullScreenMode == true)
+            {
+                WindowMode.ExitFullScreenMode();
+                SF_Symbol.Symbol = Symbol.FullScreen;
+            }
         }
+
     }
 }
