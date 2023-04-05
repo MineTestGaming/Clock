@@ -9,32 +9,54 @@
     mc:Ignorable="d"
     Background="{ThemeResource SystemControlAcrylicWindowBrush}"
     Loaded="Page_Loaded">
-    <!--VisualStateManager.VisualStateGroups>
-        <VisualStateGroup>
-            <VisualState x:Name="FullScreenState">
-                <VisualState.StateTriggers>
-                    <tg:Fullscreen WindowMode=""/>
-                </VisualState.StateTriggers>
-                <VisualState.Setters>
-                    <Setter Target="TimeTextBlock.FontSize" Value="128"/>
-                </VisualState.Setters>
-            </VisualState>
-        </VisualStateGroup>
-    </VisualStateManager.VisualStateGroups"-->
     <RelativePanel>
+        <Rectangle Height="3" Width="100" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" RadiusY="20" Margin="0,15,0,0">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="Black" Opacity="0.2"/>
+            </Rectangle.Fill>
+        </Rectangle>
         <TextBlock Text="00:00" FontSize="96" HorizontalAlignment="Center" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Name="TimeTextBlock"/>
-        
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20">
-            <Button x:Name="SwitchFloatWindow"  Click="SwitchFloatWindow_Click" Margin="0,0,10,0">
+            <Button x:Name="SwitchFloatWindow"  Click="SwitchFloatWindow_Click" Margin="0,0,10,0" Background="Transparent" FocusVisualSecondaryBrush="Transparent">
                 <Button.Content>
-                    <TextBlock Text="&#xE2B4;" FontFamily="Segoe MDL2 Assets" FontSize="20" Name="SFW_Text"/>
+                    <TextBlock Text="&#xE2B3;" FontFamily="Segoe MDL2 Assets" FontSize="20" Name="SFW_Text"/>
                 </Button.Content>
             </Button>
-            <Button x:Name="SwitchFullscreen" Click="SwitchFullscreen_Click" >
+            <Button x:Name="SwitchFullscreen" Click="SwitchFullscreen_Click" Background="Transparent" >
                 <Button.Content>
                     <SymbolIcon Symbol="FullScreen" x:Name="SF_Symbol"/>
                 </Button.Content>
             </Button>
         </StackPanel>
+        <ToggleSwitch RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="20,10,10,10" OffContent="不显示秒" OnContent="显示秒" IsOn="True" Name="SecondDisplay"/>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="NormalView">
+                    <VisualState.StateTriggers>
+                        <tg:viewModeTrigger ViewType="Normal" TargetElement="{x:Bind}"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="FullScreenView">
+                    <VisualState.StateTriggers>
+                        <tg:viewModeTrigger ViewType="FullScreen" TargetElement="{x:Bind}"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SF_Symbol.Symbol" Value="BackToWindow"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="CompactOverlayView">
+                    <VisualState.StateTriggers>
+                        <tg:viewModeTrigger ViewType="PIP" TargetElement="{x:Bind}"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SFW_Text.Text" Value="&#xE2B4;"/>
+                        <Setter Target="SecondDisplay.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </RelativePanel>
 </Page>

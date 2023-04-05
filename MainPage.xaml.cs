@@ -47,14 +47,14 @@ namespace Clock
             if (WindowMode.ViewMode != ApplicationViewMode.CompactOverlay)
             {
                 await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, WindowPrefrence);
-                SFW_Text.Text = "";
+                //   SFW_Text.Text = "";
                 return;
             }
 
             if (WindowMode.ViewMode == ApplicationViewMode.CompactOverlay)
             {
                 await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
-                SFW_Text.Text = "";
+                //  SFW_Text.Text = "";
                 return;
             }
 
@@ -69,7 +69,15 @@ namespace Clock
                 int Hr = currentTime.Hour;
                 int Min = currentTime.Minute;
                 int Sec = currentTime.Second;
-                TimeTextBlock.Text = Hr.ToString() + ":" + Trim2num(Min) + ":" + Trim2num(Sec);
+                if (SecondDisplay.IsOn)
+                {
+                    TimeTextBlock.Text = Hr.ToString() + ":" + Trim2num(Min) + ":" + Trim2num(Sec);
+                }
+                else
+                {
+                    TimeTextBlock.Text = Hr.ToString() + ":" + Trim2num(Min) ;
+                }
+
                 await Task.Delay(100);
             }
         }
