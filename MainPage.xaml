@@ -10,7 +10,7 @@
     Background="{ThemeResource SystemControlAcrylicWindowBrush}"
     Loaded="Page_Loaded">
     <RelativePanel>
-        <Rectangle Height="3" Width="100" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" RadiusY="20" Margin="0,15,0,0">
+        <Rectangle Height="3" Width="100" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="0,15,0,0" Name="TipBar" Visibility="Collapsed">
             <Rectangle.Fill>
                 <SolidColorBrush Color="Black" Opacity="0.2"/>
             </Rectangle.Fill>
@@ -45,6 +45,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="SF_Symbol.Symbol" Value="BackToWindow"/>
+                        <Setter Target="TimeTextBlock.FontSize" Value="Auto"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="CompactOverlayView">
@@ -54,6 +55,7 @@
                     <VisualState.Setters>
                         <Setter Target="SFW_Text.Text" Value="&#xE2B4;"/>
                         <Setter Target="SecondDisplay.Visibility" Value="Collapsed"/>
+                        <Setter Target="TipBar.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
