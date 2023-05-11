@@ -43,7 +43,15 @@ namespace Clock
         {
             var WindowMode = ApplicationView.GetForCurrentView();
             var WindowPrefrence = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
-            WindowPrefrence.CustomSize = new Windows.Foundation.Size(410, 212);
+            if (SecondDisplay.IsOn)
+            {
+                WindowPrefrence.CustomSize = new Windows.Foundation.Size(360, 160);
+            }
+            else
+            {
+                WindowPrefrence.CustomSize = new Windows.Foundation.Size(260, 160);
+            }
+
             if (WindowMode.ViewMode != ApplicationViewMode.CompactOverlay)
             {
                 await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, WindowPrefrence);

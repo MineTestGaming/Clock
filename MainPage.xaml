@@ -10,13 +10,13 @@
     Background="{ThemeResource SystemControlAcrylicWindowBrush}"
     Loaded="Page_Loaded">
     <RelativePanel>
-        <Rectangle Height="3" Width="100" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="0,15,0,0" Name="TipBar" Visibility="Collapsed">
+        <Rectangle Height="3" Width="100" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="0,12,0,0" Name="TipBar" Visibility="Collapsed">
             <Rectangle.Fill>
                 <SolidColorBrush Color="Black" Opacity="0.2"/>
             </Rectangle.Fill>
         </Rectangle>
         <TextBlock Text="00:00" FontSize="96" HorizontalAlignment="Center" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Name="TimeTextBlock"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20">
+        <StackPanel Name="Buttons" Orientation="Horizontal" HorizontalAlignment="Center" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20">
             <Button x:Name="SwitchFloatWindow"  Click="SwitchFloatWindow_Click" Margin="0,0,10,0" Background="Transparent" FocusVisualSecondaryBrush="Transparent">
                 <Button.Content>
                     <TextBlock Text="&#xE2B3;" FontFamily="Segoe MDL2 Assets" FontSize="20" Name="SFW_Text"/>
@@ -45,7 +45,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="SF_Symbol.Symbol" Value="BackToWindow"/>
-                        <Setter Target="TimeTextBlock.FontSize" Value="Auto"/>
+                        <Setter Target="TimeTextBlock.FontSize" Value="500"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="CompactOverlayView">
@@ -53,6 +53,7 @@
                         <tg:viewModeTrigger ViewType="PIP" TargetElement="{x:Bind}"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="Buttons.Margin" Value="10"/>
                         <Setter Target="SFW_Text.Text" Value="&#xE2B4;"/>
                         <Setter Target="SecondDisplay.Visibility" Value="Collapsed"/>
                         <Setter Target="TipBar.Visibility" Value="Visible"/>
