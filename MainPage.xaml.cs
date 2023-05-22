@@ -79,32 +79,18 @@ namespace Clock
                 int Sec = currentTime.Second;
                 if (SecondDisplay.IsOn)
                 {
-                    TimeTextBlock.Text = Hr.ToString() + ":" + Trim2num(Min) + ":" + Trim2num(Sec);
+                    TimeTextBlock.Text = Hr.ToString() + ":" + Min.ToString("00") + ":" + Sec.ToString("00");
                 }
                 else
                 {
-                    TimeTextBlock.Text = Hr.ToString() + ":" + Trim2num(Min) ;
+                    TimeTextBlock.Text = Hr.ToString() + ":" + Min.ToString("00") ;
                 }
 
                 await Task.Delay(100);
             }
         }
 
-        public string Trim2num(int i)
-        {
-            string o;
-            if (i < 10)
-            {
-                o = "0" + i.ToString();
-            }
-            else
-            {
-                o = i.ToString();
-            }
 
-
-            return o;
-        }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
