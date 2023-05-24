@@ -106,14 +106,14 @@ namespace Clock
             if (WindowMode.IsFullScreenMode == false)
             {
                 WindowMode.TryEnterFullScreenMode();
-                SF_Symbol.Symbol = Symbol.BackToWindow;
+               // SF_Symbol.Symbol = Symbol.BackToWindow;
                 return;
             }
 
             if (WindowMode.IsFullScreenMode == true)
             {
                 WindowMode.ExitFullScreenMode();
-                SF_Symbol.Symbol = Symbol.FullScreen;
+               // SF_Symbol.Symbol = Symbol.FullScreen;
             }
         }
 
